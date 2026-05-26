@@ -21,3 +21,11 @@ def load_config() -> RuntimeConfig:
 
 def clamp_port(port: int, default: int = 8080) -> int:
     return port if isinstance(port, int) and 1 <= port <= 65535 else default
+
+
+def parse_positive_int(raw, fallback: int = 1) -> int:
+    try:
+        val = int(str(raw).strip())
+        return val if val > 0 else fallback
+    except (TypeError, ValueError):
+        return fallback
